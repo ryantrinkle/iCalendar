@@ -3,13 +3,14 @@
 {-# LANGUAGE CPP #-}
 module Text.ICalendar.Parser.Common where
 
+import           Control.Monad
 import           Control.Applicative
 import           Control.Arrow                (second)
-import           Control.Monad.Error          hiding (mapM)
+import           Control.Monad.Except
 import           Control.Monad.RWS            (MonadState (get, put),
                                                MonadWriter (tell), RWS, asks,
                                                modify)
-import qualified Data.ByteString.Lazy.Builder as Bu
+import qualified Data.ByteString.Builder      as Bu
 import           Data.ByteString.Lazy.Char8   (ByteString)
 import qualified Data.ByteString.Lazy.Char8   as B
 import           Data.CaseInsensitive         (CI)
@@ -50,7 +51,7 @@ data Content = ContentLine P.SourcePos (CI Text) [(CI Text, [Text])] ByteString
 
 type TextParser = P.Parsec ByteString DecodingFunctions
 
-type ContentParser = ErrorT String -- Fatal errors.
+type ContentParser = ExceptT String -- Fatal errors.
                             (RWS DecodingFunctions
                                  [String] -- Warnings.
                                  (P.SourcePos, [Content]))
