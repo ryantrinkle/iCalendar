@@ -8,6 +8,7 @@ module Text.ICalendar.Parser
     , parseICal
     , parseICalFile
     , DecodingFunctions(..)
+    , runCP
     ) where
 
 import           Control.Applicative

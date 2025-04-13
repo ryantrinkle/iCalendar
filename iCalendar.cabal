@@ -26,7 +26,7 @@ library
                      , Text.ICalendar.Parser
                      , Text.ICalendar.Printer
                      , Text.ICalendar
-  other-modules:       Text.ICalendar.Parser.Common
+                     , Text.ICalendar.Parser.Common
                      , Text.ICalendar.Parser.Components
                      , Text.ICalendar.Parser.Content
                      , Text.ICalendar.Parser.Parameters
